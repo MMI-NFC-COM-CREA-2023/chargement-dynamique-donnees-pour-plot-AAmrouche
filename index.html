@@ -7,6 +7,25 @@
 </head>
 <body>
 
+    <script>
+
+        async function afficherPenguins() {
+    const penguinsReponse = await fetch("./penguins.json");
+    const penguins = await penguinsReponse.json();
+    console.log(penguins);
+    }
+    afficherPenguins();
+
+    async function afficherDiamonds() {
+    const diamondsReponse = await fetch("./diamonds.json");
+    const diamonds = await diamondsReponse.json();
+    console.log(diamonds);
+    }
+    afficherDiamonds();
+    </script>
+
+
+
     <nav>
         <ul>
             <li><a href="#section1">Titre 1</a></li>
@@ -32,18 +51,20 @@
 
     <div>
         <h2 id="section2">Titre 2</h2>
-    <p> Les renards sont des mammifères carnivores appartenant à la famille des canidés, et ils sont connus pour leur agilité, leur intelligence, et leur capacité d’adaptation à divers environnements.
-         Le renard roux, le plus commun, possède un pelage roux avec une queue touffue caractéristique appelée "queue en panache". Ils sont omnivores, se nourrissant d’une variété d’aliments tels que des 
-         petits mammifères, des oiseaux, des insectes, et même des fruits et des baies. Les renards sont souvent solitaires, mais ils utilisent des cris variés pour communiquer, notamment pendant la saison des amours.
-          Grâce à leur ruse et leur nature opportuniste, ils sont parvenus à s’adapter à la vie près des zones habitées par l’homme, tout en conservant leur caractère sauvage.
+    <p> Les diamants sont des pierres précieuses constituées de carbone pur cristallisé sous haute
+         pression et à des températures extrêmes, ce qui leur confère une dureté exceptionnelle. 
+         Ils sont les matériaux naturels les plus durs connus, et cette propriété fait d’eux un symbole de 
+         pureté et d'éternité. Les diamants sont prisés en joaillerie pour leur éclat et leur capacité à disperser
+            la lumière en formant des arcs-en-ciel étincelants. Bien qu'ils soient majoritairement associés à des bijoux, comme les bagues de fiançailles, ils ont aussi des applications industrielles dans la coupe et le perçage de matériaux durs.   
+         Leur rareté, combinée à leur beauté et à leur symbolique, en fait des gemmes très recherchées.
     </p>
     </div>
 
     <figure>
-        <div id="graphique_renard" style="width: 500px; height: 300px; background-color: rgb(219, 177, 100);"></div>
+        <div id="graphique_diamant" style="width: 500px; height: 300px; background-color: rgb(219, 177, 100);"></div>
             
         </div>
-            <figcaption>Renard roux</figcaption>
+            <figcaption>Diamant Brut</figcaption>
     </figure>
     
 </body>
