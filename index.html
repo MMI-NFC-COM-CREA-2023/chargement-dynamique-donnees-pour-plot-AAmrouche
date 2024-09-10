@@ -7,7 +7,10 @@
 </head>
 <body>
 
-    <script>
+    <script type="module">
+
+    import * as Plot from "https://cdn.jsdelivr.net/npm/@observablehq/plot@0.6/+esm";
+    
 
         async function afficherPenguins() {
     const penguinsReponse = await fetch("./penguins.json");
@@ -16,12 +19,46 @@
     }
     afficherPenguins();
 
-    async function afficherDiamonds() {
-    const diamondsReponse = await fetch("./diamonds.json");
-    const diamonds = await diamondsReponse.json();
-    console.log(diamonds);
+    const plot = Plot.rectY({length: 10000}, Plot.binX({y: "count"}, {x: Math.random})).plot();
+    const div = document.querySelector("#graphique_penguis");
+    div.append(plot);
+
+    async function afficherBrands() {
+    const brandsReponse = await fetch("./brands.json");
+    const brands = await brandsReponse.json();
+    console.log(brands);
+
+    const plot2 = Plot.plot({
+            marginLeft: 90,
+            x: { axis: null },
+            y: { label: null },
+            marks: [
+                Plot.barX(brands, {
+                x: "value",
+                y: "name",
+                sort: { y: "x", reverse: true, limit: 10 }
+                }),
+
+                Plot.text(brands, {
+                text: d => `${Math.floor(d.value / 1000)} B`,
+                y: "name",
+                x: "value",
+                textAnchor: "end",
+                dx: -3,
+                fill: "white"
+                })
+            ]
+}); 
+    const div2 = document.querySelector("#graphique_brands");
+    div2.append(plot2);
     }
-    afficherDiamonds();
+    afficherBrands();
+
+   
+    
+
+
+
     </script>
 
 
@@ -41,6 +78,7 @@
         avec agilité à la recherche de poissons et de krill, leur principale source de nourriture. Les manchots sont également connus pour leur comportement social, formant de grandes colonies pour se 
         reproduire et se protéger du froid.</p>
     </div>
+    
 
     <figure>
         <div id="graphique_penguis" style="width: 500px; height: 300px; background-color: rgb(123, 138, 234);">
@@ -51,20 +89,21 @@
 
     <div>
         <h2 id="section2">Titre 2</h2>
-    <p> Les diamants sont des pierres précieuses constituées de carbone pur cristallisé sous haute
-         pression et à des températures extrêmes, ce qui leur confère une dureté exceptionnelle. 
-         Ils sont les matériaux naturels les plus durs connus, et cette propriété fait d’eux un symbole de 
-         pureté et d'éternité. Les diamants sont prisés en joaillerie pour leur éclat et leur capacité à disperser
-            la lumière en formant des arcs-en-ciel étincelants. Bien qu'ils soient majoritairement associés à des bijoux, comme les bagues de fiançailles, ils ont aussi des applications industrielles dans la coupe et le perçage de matériaux durs.   
-         Leur rareté, combinée à leur beauté et à leur symbolique, en fait des gemmes très recherchées.
+    <p> Les marques jouent un rôle crucial dans l'économie et la société moderne. Elles permettent aux entreprises de se   
+         distinguer de leurs concurrents en créant une identité unique et reconnaissable. Une marque ne se limite pas à un
+          simple logo ou un nom ; elle englobe également les valeurs, la réputation et l'expérience client associées à un produit 
+          ou un service. Les consommateurs s'attachent souvent aux marques qui reflètent leurs propres valeurs, ce qui génère une
+           fidélité à long terme. En outre, les marques peuvent véhiculer des messages culturels et émotionnels, influençant les comportements
+            d'achat et établissant une relation de confiance entre l'entreprise et le client. Dans un marché globalisé et saturé, la gestion efficace
+             d'une marque est essentielle pour maintenir sa pertinence et son succès.
     </p>
     </div>
 
     <figure>
-        <div id="graphique_diamant" style="width: 500px; height: 300px; background-color: rgb(219, 177, 100);"></div>
+        <div id="graphique_brands" style="width: 500px; height: 300px; background-color: rgb(219, 177, 100);"></div>
             
         </div>
-            <figcaption>Diamant Brut</figcaption>
+            <figcaption>Marque</figcaption>
     </figure>
     
 </body>
